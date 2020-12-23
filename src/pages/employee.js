@@ -16,7 +16,6 @@ import {
   CheckboxControl,
   RadioGroupControl,
 } from "formik-chakra-ui";
-import axios from "axios";
 
 function Employee() {
   return (

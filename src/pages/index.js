@@ -1,6 +1,7 @@
 import { Container } from "../components/Container";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import { Button, Text, Flex, Image, useColorMode } from "@chakra-ui/react";
+import Link from "next/link";
 
 const Index = () => {
   const { colorMode } = useColorMode();
@@ -11,6 +12,7 @@ const Index = () => {
       <DarkModeSwitch />
       {isDark ? (
         <Image
+          marginTop="5rem"
           src="https://greatech-group.com/images/logo-greatech-color.png"
           filter="brightness(1.5)"
           alt="greatech bright mode"
@@ -18,6 +20,7 @@ const Index = () => {
         />
       ) : (
         <Image
+          marginTop="5rem"
           src="https://greatech-group.com/images/logo-greatech.png"
           alt="greatech dark mode"
           width="180px"
@@ -30,7 +33,9 @@ const Index = () => {
         <Button colorScheme="blue" marginRight="2rem">
           Vendors
         </Button>
-        <Button colorScheme="blue">Employee</Button>
+        <Link href="/employee">
+          <Button colorScheme="blue">Employee</Button>
+        </Link>
       </Flex>
     </Container>
   );
