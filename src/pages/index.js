@@ -1,31 +1,14 @@
 import { Container } from "../components/Container";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
-import { Button, Text, Flex, Image, useColorMode } from "@chakra-ui/react";
+import { Button, Text, Flex } from "@chakra-ui/react";
 import Link from "next/link";
+import NavBar from "../components/NavBar";
 
 const Index = () => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
-
   return (
     <Container height="100vh">
       <DarkModeSwitch />
-      {isDark ? (
-        <Image
-          marginTop="5rem"
-          src="https://greatech-group.com/images/logo-greatech-color.png"
-          filter="brightness(1.5)"
-          alt="greatech bright mode"
-          width="180px"
-        />
-      ) : (
-        <Image
-          marginTop="5rem"
-          src="https://greatech-group.com/images/logo-greatech.png"
-          alt="greatech dark mode"
-          width="180px"
-        />
-      )}
+      <NavBar />
       <Text fontSize="m" marginTop="5rem">
         Lets Work Together to keep Greatech Covid-19 Free !
       </Text>

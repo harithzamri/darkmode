@@ -1,7 +1,6 @@
 import React from "react";
 import { Container } from "../components/Container";
 import {
-  Image,
   FormControl,
   Input,
   FormLabel,
@@ -9,6 +8,8 @@ import {
   Box,
   Radio,
   Text,
+  useToast,
+  Flex,
 } from "@chakra-ui/react";
 import { Formik, Form } from "formik";
 import {
@@ -16,45 +17,47 @@ import {
   CheckboxControl,
   RadioGroupControl,
 } from "formik-chakra-ui";
+import axios from "axios";
+import NavBar from "../components/NavBar";
+import Link from "next/link";
 
 function Employee() {
+  const toast = useToast();
   return (
     <Container height="100vh">
-      <Image
-        src="https://greatech-group.com/images/logo-greatech.png"
-        alt="greatech dark mode"
-        width="180px"
-      />
+      <NavBar />
       <Formik
         initialValues={{
-          employeeId: "",
-          temperature: "",
-          symptom: [],
-          shift: "",
+          EmployeeId: "",
+          Temperature: "",
+          Symptom: [],
+          Shift: "",
         }}
         onSubmit={(values, { setSubmitting }) => {
+          console.log(values);
           axios
             .post("http://localhost:5000/employee/uploadEmployee", values)
             .then((response) => {
               if (response.data.success) {
+                toast({
+                  title: "Temperature has been submitted",
+                  status: "success",
+                  duration: 3000,
+                  isClosable: true,
+                });
                 alert("data has been submitted");
                 setSubmitting(false);
               }
             });
-
-          // setTimeout(() => {
-          //   alert(JSON.stringify(values, null, 2));
-          //   setSubmitting(false);
-          // }, 400);
         }}
       >
         {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-          <Form onSubmit={handleSubmit} style={{ marginTop: "2rem" }}>
+          <Form onSubmit={handleSubmit} style={{ marginTop: "1rem" }}>
             <FormControl isInvalid={false}>
               <FormLabel>Employee ID</FormLabel>
               <Input
                 type="text"
-                name="employeeId"
+                name="EmployeeId"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.employeeId}
@@ -64,7 +67,7 @@ function Employee() {
               <FormLabel>Temperature</FormLabel>
               <Input
                 type="text"
-                name="temperature"
+                name="Temperature"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.temperature}
@@ -74,14 +77,14 @@ function Employee() {
               </Text>
             </FormControl>
             <Box d="flex" flexDirection="column">
-              <CheckboxContainer name="symptom" label="Symptom">
-                <CheckboxControl name="symptom" value="Healthy">
+              <CheckboxContainer name="Symptom" label="Symptom">
+                <CheckboxControl name="Symptom" value="Healthy">
                   Healthy
                 </CheckboxControl>
-                <CheckboxControl name="symptom" value="Fever">
+                <CheckboxControl name="Symptom" value="Fever">
                   Fever
                 </CheckboxControl>
-                <CheckboxControl name="symptom" value="Cough">
+                <CheckboxControl name="Symptom" value="Cough">
                   Cough
                 </CheckboxControl>
               </CheckboxContainer>
@@ -91,20 +94,19 @@ function Employee() {
               </Text>
             </Box>
             <Box marginTop="3px">
-              <RadioGroupControl name="shift" label="Shift">
+              <RadioGroupControl name="Shift" label="Shift">
                 <Radio value="Morning">Morning</Radio>
                 <Radio value="Night">Night</Radio>
               </RadioGroupControl>
             </Box>
-            <Button
-              mt={4}
-              colorScheme="teal"
-              isLoading={isSubmitting}
-              type="submit"
-              width="100%"
-            >
-              Submit
-            </Button>
+            <Flex justifyContent="space-between" mt={2}>
+              <Button colorScheme="teal" isLoading={isSubmitting} type="submit">
+                Submit
+              </Button>
+              <Link href="/">
+                <Button colorScheme="teal">Back to Main Menu</Button>
+              </Link>
+            </Flex>
           </Form>
         )}
       </Formik>
