@@ -12,10 +12,13 @@ const Index = () => {
       <Text fontSize="m" marginTop="5rem">
         Lets Work Together to keep Greatech Covid-19 Free !
       </Text>
+
       <Flex marginTop="1rem">
-        <Button colorScheme="blue" marginRight="2rem">
-          Vendors
-        </Button>
+        <Link href="/vendors">
+          <Button colorScheme="blue" marginRight="2rem">
+            Vendors
+          </Button>
+        </Link>
         <Link href="/employee">
           <Button colorScheme="blue">Employee</Button>
         </Link>

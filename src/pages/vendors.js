@@ -126,7 +126,7 @@ function Employee() {
                 <Radio value="Night">Night</Radio>
               </RadioGroupControl>
             </Box>
-            <Flex justifyContent="space-between" mt={2}>
+            <Flex justifyContent="space-between" mb={5}>
               <Button colorScheme="teal" isLoading={isSubmitting} type="submit">
                 Submit
               </Button>
