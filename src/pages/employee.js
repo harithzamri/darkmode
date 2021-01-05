@@ -20,9 +20,12 @@ import {
 import axios from "axios";
 import NavBar from "../components/NavBar";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function Employee() {
+  const router = useRouter();
   const toast = useToast();
+
   return (
     <Container height="100vh">
       <NavBar />
@@ -46,9 +49,11 @@ function Employee() {
                   isClosable: true,
                 });
                 alert("data has been submitted");
+
                 setSubmitting(false);
               }
             });
+          router.push("/successPage");
         }}
       >
         {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (

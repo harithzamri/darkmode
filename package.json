@@ -18,7 +18,8 @@
     "framer-motion": "^2.9.4",
     "next": "latest",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-simple-keyboard": "^2.5.100"
   },
   "license": "MIT"
 }
